@@ -1,0 +1,13 @@
+name: 'Install helmfile'
+description: 'Installs a specific version of helmfile'
+inputs:
+  version:  
+    description: 'Version of helmfile to install'
+    required: false
+    default: 'v0.98.2'
+outputs:
+  helmfile_path: 
+    description: 'The path where helmfile was installed to'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

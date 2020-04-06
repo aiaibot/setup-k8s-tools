@@ -1,0 +1,33 @@
+{
+  "name": "setup-helmfile",
+  "version": "1.0.0",
+  "description": "Install helmfile",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint index.js",
+    "package": "ncc build index.js -o dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aiaibot/setup-helmfile.git"
+  },
+  "keywords": [
+    "GitHub",
+    "Actions",
+    "JavaScript",
+    "helmfile",
+    "aiaibot"
+  ],
+  "author": "Guenther Schroettner <guenther@aiaibot.com>",
+  "dependencies": {
+    "@actions/core": "^1.2.3",
+    "@actions/exec": "^1.0.3",
+    "@actions/io": "^1.0.2",
+    "@actions/tool-cache": "^1.3.3"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.20.5",
+    "eslint": "^6.3.0",
+    "jest": "^24.9.0"
+  }
+}
