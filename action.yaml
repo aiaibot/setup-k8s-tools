@@ -1,5 +1,5 @@
-name: 'Install helmfile'
-description: 'Installs a specific version of helmfile'
+name: 'Install helmfile, helm and kubectl'
+description: 'Install specific versions of helmfile, helm and kubectl'
 inputs:
   kubectl-version:
     description: "Version of kubectl"
@@ -16,3 +16,6 @@ inputs:
 runs:
   using: 'node12'
   main: 'dist/index.js'
+branding:
+  icon: 'download-cloud'
+  color: 'gray-dark'
