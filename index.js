@@ -1,9 +1,11 @@
 const core = require(`@actions/core`);
-const { installHelmfile } = require("./install");
+const { installHelmfile, installKubectl, installHelm } = require("./install");
 
 async function run() {
   try {
-    installHelmfile(core.getInput("version"));
+    installKubectl(core.getInput("kubectl-version"));
+    installHelm(core.getInput("helm-version"));
+    installHelmfile(core.getInput("helmfile-version"));
   } catch (error) {
     core.setFailed(error.message);
   }
