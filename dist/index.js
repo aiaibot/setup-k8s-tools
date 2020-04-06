@@ -952,11 +952,13 @@ module.exports = require("os");
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
 const core = __webpack_require__(470);
-const { installHelmfile } = __webpack_require__(988);
+const { installHelmfile, installKubectl, installHelm } = __webpack_require__(988);
 
 async function run() {
   try {
-    installHelmfile(core.getInput("version"));
+    installKubectl(core.getInput("kubectl-version"));
+    installHelm(core.getInput("helm-version"));
+    installHelmfile(core.getInput("helmfile-version"));
   } catch (error) {
     core.setFailed(error.message);
   }
@@ -4732,6 +4734,24 @@ const exec = __webpack_require__(986);
 const io = __webpack_require__(1);
 const path = __webpack_require__(622);
 
+async function installKubectl(version) {
+  const baseUrl = `https://storage.googleapis.com/kubernetes-release/release/${version}/bin/linux/amd64/kubectl`;
+  const downloadPath = await download(baseUrl);
+  await install(downloadPath, "kubectl");
+}
+
+async function installHelm(version) {
+  const baseUrl = `https://get.helm.sh/helm-${version}-linux-amd64.tar.gz`;
+  const downloadPath = await download(baseUrl);
+  const folder = await extract(downloadPath);
+  await install(`${folder}/linux-amd64/helm`, "helm");
+}
+
+async function extract(downloadPath) {
+  const folder = await tc.extractTar(downloadPath);
+  return folder;
+}
+
 async function installHelmfile(version) {
   const baseUrl = "https://github.com/roboll/helmfile/releases/download"
   const downloadPath = await download(`${baseUrl}/${version}/helmfile_linux_amd64`);
@@ -4754,7 +4774,7 @@ async function install(downloadPath, filename) {
 }
 
 module.exports = {
-  installHelmfile
+  installKubectl, installHelm, installHelmfile
 }
 
 /***/ })
