@@ -1,18 +1,20 @@
+@aiaibot/setup-k8s-tools
+
 Install the following tools:
 * kubectl
-* helm
+* helm (only Helm 2)
 * helmfile
 
-Reference this action in your workflow with `aiaibot/setup-k8s-tools@master`.
 
-All version parameters are optional. These are the default values:
-* kubect: `v1.18.0`
-* helm: `v2.16.5`
-* helmfile: `v0.98.2`
+Thera are no required input parameters. These are the default values:
+- kubectl-version: `v1.18.0`
+- helm-version: `v2.16.5`
+- helmfile-version: `v0.98.2`
 
+Example with optional input parameters:
 
 ```yaml
-uses: aiaibot/setup-k8s-tools@master
+uses: aiaibot/setup-k8s-tools@v1
 with:
   kubectl-version: "v1.18.0"
   helm-version: "v2.16.5"
