@@ -38,9 +38,9 @@ async function installHelmfile(version) {
 }
 
 async function download(url) {
-  console.log("Downloading from : " + url);
+  console.log("Downloading from: " + url);
   const downloadPath = await tc.downloadTool(url);
-  console.log("Finish downloading. : " + downloadPath);
+  console.log("Finish downloading: " + downloadPath);
   return downloadPath;
 }
 
