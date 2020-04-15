@@ -14,7 +14,7 @@ Thera are no required input parameters. These are the default values:
 Example with optional input parameters:
 
 ```yaml
-uses: aiaibot/setup-k8s-tools@v1
+uses: aiaibot/setup-k8s-tools@v2
 with:
   kubectl-version: "v1.18.0"
   helm-version: "v2.16.5"
