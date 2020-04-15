@@ -6,12 +6,14 @@ const io = require("@actions/io");
 const path = require("path");
 
 async function installKubectl(version) {
+  console.log("Installing kubectl version " + version);
   const baseUrl = `https://storage.googleapis.com/kubernetes-release/release/${version}/bin/linux/amd64/kubectl`;
   const downloadPath = await download(baseUrl);
   await install(downloadPath, "kubectl");
 }
 
 async function installHelm(version) {
+  console.log("Installing helm version " + version);
   const baseUrl = `https://get.helm.sh/helm-${version}-linux-amd64.tar.gz`;
   const downloadPath = await download(baseUrl);
   const folder = await extract(downloadPath);
@@ -29,6 +31,7 @@ async function extract(downloadPath) {
 }
 
 async function installHelmfile(version) {
+  console.log("Installing helmfile version " + version);
   const baseUrl = "https://github.com/roboll/helmfile/releases/download"
   const downloadPath = await download(`${baseUrl}/${version}/helmfile_linux_amd64`);
   await install(downloadPath, "helmfile");
