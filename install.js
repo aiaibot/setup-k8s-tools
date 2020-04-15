@@ -16,8 +16,11 @@ async function installHelm(version) {
   const downloadPath = await download(baseUrl);
   const folder = await extract(downloadPath);
   await install(`${folder}/linux-amd64/helm`, "helm");
+  console.log("Installing helm plugins.")
+  await exec.exec("helm init --client-only");
   await exec.exec("helm plugin install https://github.com/futuresimple/helm-secrets");
   await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
+  console.log("Helm plugins installed.")
 }
 
 async function extract(downloadPath) {
