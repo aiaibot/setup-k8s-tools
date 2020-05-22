@@ -48,7 +48,7 @@ async function install(downloadPath, filename) {
   const binPath = "/home/runner/bin";
   await io.mkdirP(binPath);
   await exec.exec("chmod", ["+x", downloadPath]);
-  await io.mv(downloadPath, path.join(binPath, filename));
+  await io.cp(downloadPath, path.join(binPath, filename));
   core.addPath(binPath);
 }
 
