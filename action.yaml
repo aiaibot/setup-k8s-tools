@@ -8,7 +8,7 @@ inputs:
   helm-version:
     description: "Version of helm (Helm 2 only)"
     required: false
-    default: "v2.16.5"    
+    default: "v2.16.7"
   helmfile-version:
     description: 'Version of helmfile to install'
     required: false
