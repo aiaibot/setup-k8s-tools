@@ -9,10 +9,18 @@ inputs:
     description: "Version of helm (Helm 2 only)"
     required: false
     default: "v2.16.7"
+  helm3-version:
+    description: "Version of Helm 3"
+    required: false
+    default: "v3.0.3"
   helmfile-version:
     description: 'Version of helmfile to install'
     required: false
     default: 'v0.98.2'
+  use-helm3:
+    description: 'If set to true, Helm 3 get installed instead of Helm 2'
+    required: false
+    default: "false"
 runs:
   using: 'node12'
   main: 'dist/index.js'

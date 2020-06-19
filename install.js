@@ -12,6 +12,18 @@ async function installKubectl(version) {
   await install(downloadPath, "kubectl");
 }
 
+async function installHelm3(version) {
+  console.log("Installing helm version " + version);
+  const downloadPath = await download(`https://get.helm.sh/helm-${version}-linux-amd64.tar.gz`);
+  const folder = await extract(downloadPath);
+  await install(`${folder}/linux-amd64/helm`, "helm");
+
+  console.log("Installing helm plugins.")
+  await exec.exec("helm plugin install https://github.com/futuresimple/helm-secrets");
+  await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
+  console.log("Helm plugins installed.")
+}
+
 async function installHelm(version) {
   console.log("Installing helm version " + version);
   const baseUrl = `https://get.helm.sh/helm-${version}-linux-amd64.tar.gz`;
@@ -53,5 +65,5 @@ async function install(downloadPath, filename) {
 }
 
 module.exports = {
-  installKubectl, installHelm, installHelmfile
+  installKubectl, installHelm, installHelm3, installHelmfile
 }
