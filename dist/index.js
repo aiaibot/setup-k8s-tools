@@ -957,7 +957,15 @@ const { installHelmfile, installKubectl, installHelm } = __webpack_require__(988
 async function run() {
   try {
     installKubectl(core.getInput("kubectl-version"));
-    installHelm(core.getInput("helm-version"));
+
+    const useHelm3 = core.getInput("use-helm3");
+    if (useHelm3 === 'true') {
+      installHelm3(core.getInput("helm3-version"));
+    }
+    else {
+      installHelm(core.getInput("helm-version"));
+    }
+
     installHelmfile(core.getInput("helmfile-version"));
   } catch (error) {
     core.setFailed(error.message);
@@ -4741,6 +4749,18 @@ async function installKubectl(version) {
   await install(downloadPath, "kubectl");
 }
 
+async function installHelm3(version) {
+  console.log("Installing helm version " + version);
+  const downloadPath = await download(`https://get.helm.sh/helm-${version}-linux-amd64.tar.gz`);
+  const folder = await extract(downloadPath);
+  await install(`${folder}/linux-amd64/helm`, "helm");
+
+  console.log("Installing helm plugins.")
+  await exec.exec("helm plugin install https://github.com/futuresimple/helm-secrets");
+  await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
+  console.log("Helm plugins installed.")
+}
+
 async function installHelm(version) {
   console.log("Installing helm version " + version);
   const baseUrl = `https://get.helm.sh/helm-${version}-linux-amd64.tar.gz`;
@@ -4782,7 +4802,7 @@ async function install(downloadPath, filename) {
 }
 
 module.exports = {
-  installKubectl, installHelm, installHelmfile
+  installKubectl, installHelm, installHelm3, installHelmfile
 }
 
 
