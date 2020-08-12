@@ -952,7 +952,7 @@ module.exports = require("os");
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
 const core = __webpack_require__(470);
-const { installHelmfile, installKubectl, installHelm } = __webpack_require__(988);
+const { installHelmfile, installKubectl, installHelm, installHelm3 } = __webpack_require__(988);
 
 async function run() {
   try {
