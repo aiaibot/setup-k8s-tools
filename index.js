@@ -1,5 +1,5 @@
 const core = require(`@actions/core`);
-const { installHelmfile, installKubectl, installHelm } = require("./install");
+const { installHelmfile, installKubectl, installHelm, installHelm3 } = require("./install");
 
 async function run() {
   try {
