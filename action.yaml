@@ -20,7 +20,7 @@ inputs:
   use-helm3:
     description: 'If set to true, Helm 3 get installed instead of Helm 2'
     required: false
-    default: "false"
+    default: "true"
 runs:
   using: 'node12'
   main: 'dist/index.js'
