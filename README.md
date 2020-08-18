@@ -7,7 +7,7 @@ Install the following tools:
 
 
 Thera are no required input parameters. These are the default values:
-- kubectl-version: `v1.18.0`
+- kubectl-version: `v1.18.5`
 - helm-version: `v2.16.7`
 - helmfile-version: `v0.119.0`
 - use-helm3: `true`
