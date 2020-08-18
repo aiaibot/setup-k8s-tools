@@ -1,9 +1,9 @@
 @aiaibot/setup-k8s-tools
 
 Install the following tools:
-* kubectl
-* helm: either version 2 or 3. Helm 3 is default.
-* helmfile
+* `kubectl`
+* `helm`: either version 2 or 3. Helm 3 is default.
+* `helmfile`
 
 
 Thera are no required input parameters. These are the default values:
