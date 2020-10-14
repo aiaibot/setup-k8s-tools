@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aiaibot/setup-helmfile.git"
+    "url": "git+https://github.com/aiaibot/setup-k8s-tools.git"
   },
   "keywords": [
     "GitHub",
