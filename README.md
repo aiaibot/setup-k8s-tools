@@ -7,16 +7,16 @@ Install the following tools:
 
 
 Thera are no required input parameters. These are the default values:
-- kubectl-version: `v1.18.5`
+- kubectl-version: `v1.19.3`
 - helm-version: `v2.16.7`
-- helmfile-version: `v0.119.0`
+- helmfile-version: `v0.132.1`
 - use-helm3: `true`
-- helm3-version: `v3.2.4`
+- helm3-version: `v3.4.0`
 
 Example with optional input parameters:
 
 ```yaml
-uses: aiaibot/setup-k8s-tools@v10
+uses: aiaibot/setup-k8s-tools@v11
 with:
   kubectl-version: "v1.18.5"
   helmfile-version: "v0.98.2"
