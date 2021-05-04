@@ -29,13 +29,14 @@ async function installHelm3(version) {
   await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
   console.log("Helm plugins installed.")
 
+}
+
+async function installSops(version) {
   console.log("Install sops.");
-  const sopsVersion = "3.7.1";
-  const sopsBaseUrl = `https://github.com/mozilla/sops/releases/download/v${sopsVersion}/sops-v${sopsVersion}.linux`;
+  const sopsBaseUrl = `https://github.com/mozilla/sops/releases/download/${version}/sops-${version}.linux`;
   const sopsDownloadPath = await download(sopsBaseUrl);
   await install(sopsDownloadPath, "sops");
   console.log("sops installed.");
-  await exec.exec("sops --version");
 }
 
 async function installHelm(version) {
@@ -79,7 +80,7 @@ async function install(downloadPath, filename) {
 }
 
 module.exports = {
-  installKubectl, installHelm, installHelm3, installHelmfile
+  installKubectl, installHelm, installHelm3, installHelmfile, installSops
 }
 
 
@@ -6587,6 +6588,7 @@ async function run() {
     const useHelm3 = core.getInput("use-helm3");
     if (useHelm3 === 'true') {
       installHelm3(core.getInput("helm3-version"));
+      installSops(core.getInput("sops-version"));
     }
     else {
       installHelm(core.getInput("helm-version"));

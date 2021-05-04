@@ -8,6 +8,7 @@ async function run() {
     const useHelm3 = core.getInput("use-helm3");
     if (useHelm3 === 'true') {
       installHelm3(core.getInput("helm3-version"));
+      installSops(core.getInput("sops-version"));
     }
     else {
       installHelm(core.getInput("helm-version"));
