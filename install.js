@@ -34,7 +34,17 @@ async function installHelm(version) {
   await exec.exec("helm init --client-only");
   await exec.exec("helm plugin install https://github.com/futuresimple/helm-secrets");
   await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
-  console.log("Helm plugins installed.")
+  console.log("Helm plugins installed.");
+  await installSops("3.7.1")
+}
+
+async function installSops(version) {
+  console.log("Installing sops version " + version);
+  const baseUrl = `https://github.com/mozilla/sops/releases/download/v${version}/sops-v${version}.linux`;
+  const downloadPath = await download(baseUrl);
+  await exec.exec(`mv ${downloadPath}/sops-v${version}.linux sops`);
+  await install(downloadPath, "sops");
+  console.log("sops installed.");
 }
 
 async function extract(downloadPath) {
