@@ -28,6 +28,14 @@ async function installHelm3(version) {
   await exec.exec("helm plugin install https://github.com/jkroepke/helm-secrets");
   await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
   console.log("Helm plugins installed.")
+
+  const sopsVersion = "3.7.1";
+  const sopsBaseUrl = `https://github.com/mozilla/sops/releases/download/v${sopsVersion}/sops-v${sopsVersion}.linux`;
+  console.log(`Installing sops ${sopsBaseUrl}`);
+  const sopsDownloadPath = await download(sopsBaseUrl);
+  await exec.exec(`mv ${sopsDownloadPath}/sops-v${sopsVersion}.linux sops`);
+  await install(downloadPath, "sops");
+  console.log("sops installed.");
 }
 
 async function installHelm(version) {
@@ -41,14 +49,6 @@ async function installHelm(version) {
   await exec.exec("helm plugin install https://github.com/futuresimple/helm-secrets");
   await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
   console.log("Helm plugins installed!");
-
-  const sopsVersion = "3.7.1";
-  const sopsBaseUrl = `https://github.com/mozilla/sops/releases/download/v${sopsVersion}/sops-v${sopsVersion}.linux`;
-  console.log(`Installing sops ${sopsBaseUrl}`);
-  const sopsDownloadPath = await download(sopsBaseUrl);
-  await exec.exec(`mv ${sopsDownloadPath}/sops-v${sopsVersion}.linux sops`);
-  await install(downloadPath, "sops");
-  console.log("sops installed.");
 }
 
 async function extract(downloadPath) {
