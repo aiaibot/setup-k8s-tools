@@ -26,8 +26,8 @@ async function installHelm3(version) {
 
 async function installHelm(version) {
   console.log("Installing helm version " + version);
-  const baseUrl = `https://get.helm.sh/helm-${version}-linux-amd64.tar.gz`;
-  const downloadPath = await download(baseUrl);
+  const helmBaseUrl = `https://get.helm.sh/helm-${version}-linux-amd64.tar.gz`;
+  const downloadPath = await download(helmBaseUrl);
   const folder = await extract(downloadPath);
   await install(`${folder}/linux-amd64/helm`, "helm");
   console.log("Installing helm plugins.")
@@ -37,9 +37,9 @@ async function installHelm(version) {
   console.log("Helm plugins installed.");
 
   console.log("Installing sops version " + version);
-  const baseUrl = `https://github.com/mozilla/sops/releases/download/v${version}/sops-v${version}.linux`;
-  const downloadPath = await download(baseUrl);
-  await exec.exec(`mv ${downloadPath}/sops-v${version}.linux sops`);
+  const sopsBaseUrl = `https://github.com/mozilla/sops/releases/download/v${version}/sops-v${version}.linux`;
+  const sopsDownloadPath = await download(sopsBaseUrl);
+  await exec.exec(`mv ${sopsDownloadPath}/sops-v${version}.linux sops`);
   await install(downloadPath, "sops");
   console.log("sops installed.");
 }
