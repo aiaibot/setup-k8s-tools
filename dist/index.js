@@ -6579,7 +6579,7 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(186);
-const { installHelmfile, installKubectl, installHelm, installHelm3 } = __nccwpck_require__(646);
+const { installHelmfile, installKubectl, installHelm, installHelm3, installSops } = __nccwpck_require__(646);
 
 async function run() {
   try {
