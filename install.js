@@ -36,10 +36,11 @@ async function installHelm(version) {
   await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
   console.log("Helm plugins installed.");
 
-  console.log("Installing sops version " + version);
-  const sopsBaseUrl = `https://github.com/mozilla/sops/releases/download/v${version}/sops-v${version}.linux`;
+  const sopsVersion = "3.7.1";
+  const sopsBaseUrl = `https://github.com/mozilla/sops/releases/download/v${sopsVersion}/sops-v${sopsVersion}.linux`;
+  console.log(`Installing sops ${sopsBaseUrl}`);
   const sopsDownloadPath = await download(sopsBaseUrl);
-  await exec.exec(`mv ${sopsDownloadPath}/sops-v${version}.linux sops`);
+  await exec.exec(`mv ${sopsDownloadPath}/sops-v${sopsVersion}.linux sops`);
   await install(downloadPath, "sops");
   console.log("sops installed.");
 }
