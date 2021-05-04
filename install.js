@@ -27,7 +27,7 @@ async function installHelm3(version) {
   const sopsBaseUrl = `https://github.com/mozilla/sops/releases/download/v${sopsVersion}/sops-v${sopsVersion}.linux`;
   console.log(`Installing sops ${sopsBaseUrl}`);
   const sopsDownloadPath = await download(sopsBaseUrl);
-  await exec.exec(`mv ${sopsDownloadPath}/sops-v${sopsVersion}.linux sops`);
+  await exec.exec(`mv ${sopsDownloadPath}/sops-v${sopsVersion}.linux ${sopsDownloadPath}/sops`);
   await install(downloadPath, "sops");
   console.log("sops installed.");
 }
