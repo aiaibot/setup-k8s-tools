@@ -35,6 +35,7 @@ async function installHelm3(version) {
   const sopsDownloadPath = await download(sopsBaseUrl);
   await install(downloadPath, "sops");
   console.log("sops installed.");
+  await exec.exec("sops", ["-v"]);
 }
 
 async function installHelm(version) {
