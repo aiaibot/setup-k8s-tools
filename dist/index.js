@@ -2795,7 +2795,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const semver = __importStar(__nccwpck_require__(562));
+const semver = __importStar(__nccwpck_require__(911));
 const core_1 = __nccwpck_require__(705);
 // needs to be require for core node modules to be mocked
 /* eslint @typescript-eslint/no-require-imports: 0 */
@@ -2995,7 +2995,7 @@ const mm = __importStar(__nccwpck_require__(473));
 const os = __importStar(__nccwpck_require__(87));
 const path = __importStar(__nccwpck_require__(622));
 const httpm = __importStar(__nccwpck_require__(925));
-const semver = __importStar(__nccwpck_require__(562));
+const semver = __importStar(__nccwpck_require__(911));
 const stream = __importStar(__nccwpck_require__(413));
 const util = __importStar(__nccwpck_require__(669));
 const v4_1 = __importDefault(__nccwpck_require__(824));
@@ -4468,7 +4468,7 @@ function copyFile(srcFile, destFile, force) {
 
 /***/ }),
 
-/***/ 562:
+/***/ 911:
 /***/ ((module, exports) => {
 
 exports = module.exports = SemVer
