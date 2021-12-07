@@ -37,7 +37,7 @@ async function installHelm3(version) {
   do {
     try {
       await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
-      installed = true;
+      pluginInstalled = true;
     }
     catch (error) {
       console.log(error);
