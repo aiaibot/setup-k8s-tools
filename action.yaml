@@ -13,11 +13,11 @@ inputs:
   helm3-version:
     description: "Version of Helm 3"
     required: false
-    default: "v3.4.0"
+    default: "v3.7.1"
   helmfile-version:
     description: 'Version of helmfile to install'
     required: false
-    default: 'v0.132.1'
+    default: 'v0.142.0'
   use-helm3:
     description: 'If set to true, Helm 3 get installed instead of Helm 2'
     required: false
