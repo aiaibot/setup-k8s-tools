@@ -20,6 +20,7 @@ async function installHelm3(version) {
 
   console.log("Installing helm plugins.")
   await exec.exec("helm plugin install https://github.com/jkroepke/helm-secrets");
+  await exec.exec("helm plugin install https://github.com/jkroepke/helm-secrets --version v3.11.0");
   await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
   console.log("Helm plugins installed.")
 
