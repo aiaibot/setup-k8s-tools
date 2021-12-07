@@ -25,8 +25,31 @@ async function installHelm3(version) {
   await install(`${folder}/linux-amd64/helm`, "helm");
 
   console.log("Installing helm plugins.")
-  await exec.exec("helm plugin install https://github.com/jkroepke/helm-secrets --version v3.11.0");
-  await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
+  let retryCounter = 10;
+  let pluginInstalled = false;
+  do {
+    try {
+      await exec.exec("helm plugin install https://github.com/jkroepke/helm-secrets --version v3.11.0");
+      pluginInstalled = true;
+    }
+    catch (error) {
+      console.log(error);
+      retryCounter --;
+    }
+  } while (!pluginInstalled && retryCounter > 0);
+
+  retryCounter = 10;
+  pluginInstalled = false;
+  do {
+    try {
+      await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
+      installed = true;
+    }
+    catch (error) {
+      console.log(error);
+      retryCounter --;
+    }
+  } while (!pluginInstalled && retryCounter > 0);
   console.log("Helm plugins installed.")
 
 }
