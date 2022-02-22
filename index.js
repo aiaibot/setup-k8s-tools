@@ -1,18 +1,12 @@
 const core = require(`@actions/core`);
-const { installHelmfile, installKubectl, installHelm, installHelm3, installSops } = require("./install");
+const { installHelmfile, installKubectl, installHelm, installSops } = require("./install");
 
 async function run() {
   try {
     installKubectl(core.getInput("kubectl-version"));
 
-    const useHelm3 = core.getInput("use-helm3");
-    if (useHelm3 === 'true') {
-      installHelm3(core.getInput("helm3-version"));
-      installSops(core.getInput("sops-version"));
-    }
-    else {
-      installHelm(core.getInput("helm-version"));
-    }
+    installHelm(core.getInput("helm-version"));
+    installSops(core.getInput("sops-version"));
 
     installHelmfile(core.getInput("helmfile-version"));
   } catch (error) {

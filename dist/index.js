@@ -18,7 +18,7 @@ async function installKubectl(version) {
   await install(downloadPath, "kubectl");
 }
 
-async function installHelm3(version) {
+async function installHelm(version) {
   console.log("Installing helm version " + version);
   const downloadPath = await download(`https://get.helm.sh/helm-${version}-linux-amd64.tar.gz`);
   const folder = await extract(downloadPath);
@@ -42,8 +42,10 @@ async function installHelm3(version) {
   pluginInstalled = false;
   do {
     try {
+      console.log("Retry counter: " + retryCounter);
+
       await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
-      installed = true;
+      pluginInstalled = true;
     }
     catch (error) {
       console.log(error);
@@ -60,19 +62,6 @@ async function installSops(version) {
   const sopsDownloadPath = await download(sopsBaseUrl);
   await install(sopsDownloadPath, "sops");
   console.log("sops installed.");
-}
-
-async function installHelm(version) {
-  console.log("Installing helm version " + version);
-  const helmBaseUrl = `https://get.helm.sh/helm-${version}-linux-amd64.tar.gz`;
-  const downloadPath = await download(helmBaseUrl);
-  const folder = await extract(downloadPath);
-  await install(`${folder}/linux-amd64/helm`, "helm");
-  console.log("Installing helm plugins.")
-  await exec.exec("helm init --client-only");
-  await exec.exec("helm plugin install https://github.com/futuresimple/helm-secrets");
-  await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
-  console.log("Helm plugins installed!");
 }
 
 async function extract(downloadPath) {
@@ -5211,20 +5200,14 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(186);
-const { installHelmfile, installKubectl, installHelm, installHelm3, installSops } = __nccwpck_require__(646);
+const { installHelmfile, installKubectl, installHelm, installSops } = __nccwpck_require__(646);
 
 async function run() {
   try {
     installKubectl(core.getInput("kubectl-version"));
 
-    const useHelm3 = core.getInput("use-helm3");
-    if (useHelm3 === 'true') {
-      installHelm3(core.getInput("helm3-version"));
-      installSops(core.getInput("sops-version"));
-    }
-    else {
-      installHelm(core.getInput("helm-version"));
-    }
+    installHelm(core.getInput("helm-version"));
+    installSops(core.getInput("sops-version"));
 
     installHelmfile(core.getInput("helmfile-version"));
   } catch (error) {
