@@ -86,5 +86,5 @@ async function install(downloadPath, filename) {
 }
 
 module.exports = {
-  installKubectl, installHelm, installHelm3, installHelmfile, installSops
+  installKubectl, installHelm, installHelmfile, installSops
 }
