@@ -4,20 +4,20 @@ inputs:
   kubectl-version:
     description: "Version of kubectl"
     required: false
-    default: "v1.19.3"
+    default: "v1.24.2"
   helm-version:
     description: "Version of helm"
     required: false
-    default: "v3.7.1"
+    default: "v3.9.0"
     deprecationMessage: Will be removed in next release since helm 3 becomes standard.
   helmfile-version:
     description: 'Version of helmfile to install'
     required: false
-    default: 'v0.142.0'
+    default: 'v0.144.0'
   sops-version:
     description: 'Version of sops to install'
     required: false
-    default: 'v3.7.1'
+    default: 'v3.7.3'
 runs:
   using: 'node12'
   main: 'dist/index.js'
