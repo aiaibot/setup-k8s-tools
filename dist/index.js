@@ -29,7 +29,7 @@ async function installHelm(version) {
   let pluginInstalled = false;
   do {
     try {
-      await exec.exec("helm plugin install https://github.com/jkroepke/helm-secrets --version v3.11.0");
+      await exec.exec("helm plugin install https://github.com/jkroepke/helm-secrets --version v4.1.2-dev");
       pluginInstalled = true;
     }
     catch (error) {
@@ -42,8 +42,6 @@ async function installHelm(version) {
   pluginInstalled = false;
   do {
     try {
-      console.log("Retry counter: " + retryCounter);
-
       await exec.exec("helm plugin install https://github.com/databus23/helm-diff --version master");
       pluginInstalled = true;
     }
