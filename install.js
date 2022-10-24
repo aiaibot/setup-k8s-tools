@@ -23,7 +23,7 @@ async function installHelm(version) {
   let pluginInstalled = false;
   do {
     try {
-      await exec.exec("helm plugin install https://github.com/jkroepke/helm-secrets --version v4.1.1");
+      await exec.exec("helm plugin install https://github.com/jkroepke/helm-secrets --version v3.15.0");
       pluginInstalled = true;
     }
     catch (error) {
