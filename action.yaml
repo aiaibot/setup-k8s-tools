@@ -8,12 +8,12 @@ inputs:
   helm-version:
     description: "Version of helm"
     required: false
-    default: "v3.9.0"
+    default: "v3.10.1"
     deprecationMessage: Will be removed in next release since helm 3 becomes standard.
   helmfile-version:
     description: 'Version of helmfile to install'
     required: false
-    default: 'v0.144.0'
+    default: 'v0.147.0'
   sops-version:
     description: 'Version of sops to install'
     required: false
