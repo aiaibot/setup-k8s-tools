@@ -15,8 +15,13 @@ Thera are no required input parameters. These are the default values:
 Example with optional input parameters:
 
 ```yaml
-uses: aiaibot/setup-k8s-tools@v26
+uses: aiaibot/setup-k8s-tools@v27
 with:
   kubectl-version: "v1.24.2"
   helmfile-version: "v0.144.0"
 ```
+
+## Create a new version
+1. Increase the version number in `package.json`.
+2. Run `npm run package` in the root folder.
+3. Commit and push.
