@@ -1,6 +1,6 @@
 {
   "name": "setup-helmfile",
-  "version": "29",
+  "version": "30",
   "description": "Install helmfile",
   "main": "index.js",
   "scripts": {
