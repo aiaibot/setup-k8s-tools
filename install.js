@@ -63,9 +63,10 @@ async function extract(downloadPath) {
 
 async function installHelmfile(version) {
   console.log("Installing helmfile version " + version);
-  const baseUrl = "https://github.com/roboll/helmfile/releases/download"
-  const downloadPath = await download(`${baseUrl}/${version}/helmfile_linux_amd64`);
-  await install(downloadPath, "helmfile");
+  const baseUrl = "https://github.com/helmfile/helmfile/releases/download"
+  const downloadPath = await download(`${baseUrl}/${version}/helmfile_${version}_linux_amd64.tar.gz`);
+  const folder = await extract(downloadPath);
+  await install(`${folder}/helmfile`, "helmfile");
 }
 
 async function download(url) {
