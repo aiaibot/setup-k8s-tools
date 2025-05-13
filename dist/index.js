@@ -120,6 +120,7 @@ async function isInstalled(tool) {
     console.log(tool + " is installed");
     return true;
   } catch (error) {
+    console.log(error);
     console.log(tool + " is not installed");
     return false;
   }
