@@ -6,6 +6,11 @@ const io = require("@actions/io");
 const path = require("path");
 
 async function installKubectl(version) {
+  const installed = await isInstalled("kubectl");
+  if (installed) {
+    console.log("kubectl is already installed")
+    return;
+  }
   console.log("Installing kubectl version " + version);
   const baseUrl = `https://storage.googleapis.com/kubernetes-release/release/${version}/bin/linux/amd64/kubectl`;
   const downloadPath = await download(baseUrl);
@@ -13,6 +18,11 @@ async function installKubectl(version) {
 }
 
 async function installHelm(version) {
+  const installed = await isInstalled("helm");
+  if (installed) {
+    console.log("helm is already installed")
+    return;
+  }
   console.log("Installing helm version " + version);
   const downloadPath = await download(`https://get.helm.sh/helm-${version}-linux-amd64.tar.gz`);
   const folder = await extract(downloadPath);
@@ -49,6 +59,11 @@ async function installHelm(version) {
 }
 
 async function installSops(version) {
+  const installed = await isInstalled("sops");
+  if (installed) {
+    console.log("sops is already installed")
+    return;
+  }
   console.log("Install sops.");
   const sopsBaseUrl = `https://github.com/mozilla/sops/releases/download/${version}/sops-${version}.linux`;
   const sopsDownloadPath = await download(sopsBaseUrl);
@@ -62,6 +77,11 @@ async function extract(downloadPath) {
 }
 
 async function installHelmfile(version) {
+  const installed = await isInstalled("helmfile");
+  if (installed) {
+    console.log("helmfile is already installed")
+    return;
+  }
   console.log("Installing helmfile version " + version);
   const baseUrl = "https://github.com/helmfile/helmfile/releases/download"
   // Caution!!
@@ -85,6 +105,15 @@ async function install(downloadPath, filename) {
   await exec.exec("chmod", ["+x", downloadPath]);
   await io.cp(downloadPath, path.join(binPath, filename));
   core.addPath(binPath);
+}
+
+async function isInstalled(tool) {
+  try {
+    await exec.exec('command' ['-v', tool], {silent: true});
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
 
 module.exports = {
