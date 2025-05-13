@@ -110,7 +110,7 @@ async function install(downloadPath, filename) {
 async function isInstalled(tool) {
   console.log("Checking if " + tool + " is installed");
   try {
-    await exec.exec("command -v " + tool);
+    await exec.exec("ls /usr/bin/" + tool);
     console.log(tool + " is installed");
     return true;
   } catch (error) {
