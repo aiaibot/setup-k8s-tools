@@ -23,5 +23,5 @@ with:
 
 ## Create a new version
 1. Increase the version number in `package.json`.
-2. Run `npm run package` in the root folder.
+2. Run `npm run package` in the root folder. If `ncc` is missing, call `npm i -g @vercel/ncc`
 3. Commit and push.
