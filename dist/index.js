@@ -115,7 +115,7 @@ async function install(downloadPath, filename) {
 
 async function isInstalled(tool) {
   try {
-    await exec.exec('command' ['-v', tool], {silent: true});
+    await exec.exec("command -v " + tool);
     return true;
   } catch (error) {
     return false;
