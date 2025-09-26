@@ -1,5 +1,5 @@
-name: 'Install helmfile, helm and kubectl'
-description: 'Install specific versions of helmfile, helm and kubectl'
+name: "Install helmfile, helm and kubectl"
+description: "Install specific versions of helmfile, helm and kubectl"
 inputs:
   kubectl-version:
     description: "Version of kubectl"
@@ -8,18 +8,18 @@ inputs:
   helm-version:
     description: "Version of helm"
     required: false
-    default: "v3.15.1"
+    default: "v3.19.0"
   helmfile-version:
-    description: 'Version of helmfile to install'
+    description: "Version of helmfile to install"
     required: false
-    default: '0.165.0'
+    default: "0.165.0"
   sops-version:
-    description: 'Version of sops to install'
+    description: "Version of sops to install"
     required: false
-    default: 'v3.7.3'
+    default: "v3.7.3"
 runs:
-  using: 'node20'
-  main: 'dist/index.js'
+  using: "node20"
+  main: "dist/index.js"
 branding:
-  icon: 'download-cloud'
-  color: 'gray-dark'
+  icon: "download-cloud"
+  color: "gray-dark"
