@@ -12,7 +12,7 @@ inputs:
   helmfile-version:
     description: "Version of helmfile to install"
     required: false
-    default: "0.171.0"
+    default: "1.1.7"
   sops-version:
     description: "Version of sops to install"
     required: false
